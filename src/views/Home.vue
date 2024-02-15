@@ -60,15 +60,26 @@ export default {
 
 <template>
 
-  <div class="home align-center justify-center">
+  <div class="home align-center p-3 justify-center text-center text-xl">
     <h1>Home</h1>
-  </div>
+    <br />
+    <div v-if="posts.length">
+      <PostList v-if="showPosts" :posts="posts" />
+    </div>
+    <div v-else>Loading...</div>
+    <div class="bg-slate-400 p-3 w-36 text-center text-red-500" v-if="error">
+      {{error}}
+    </div>
+    <br />
+    <button @click="showPosts = !showPosts">Toggle Posts</button>
+    <button @click="posts.pop()">Deleta A Post</button>
 
-<PostList :posts="posts" />
+  </div>
   
 </template>
 
 <script>
+import  getPosts from '../composables/getPosts.js'
 import PostList from '../components/PostList.vue' 
 import {ref} from 'vue';
 
@@ -79,13 +90,17 @@ export default {
   },
   setup() {
 
-    const posts = ref([
-      {title: 'Welcome to the blog', body: 'Lorem ipsum', id: 1},
-      {title: 'Top 5 CSS tips', blody: 'Lorem ipsum', id: 2}
-    ])
+    const {posts, error, load} = getPosts()
+
+    load()
+
+    const showPosts = ref(true)
 
     return {
-      posts
+      posts,
+      error,
+      load,
+      showPosts
     }
     
   }
