@@ -60,7 +60,7 @@ export default {
 
 <template>
 
-  <div class="home align-center p-3 justify-center text-center text-xl">
+  <div class="home align-center p-3 justify-center mx-auto text-center text-xl">
     <h1>Home</h1>
     <br />
     <div v-if="posts.length">
@@ -71,9 +71,11 @@ export default {
       {{error}}
     </div>
     <br />
-    <button @click="showPosts = !showPosts">Toggle Posts</button>
-    <button @click="posts.pop()">Deleta A Post</button>
-
+    <div class="gap-4 mx-auto">
+      <button @click="showPosts = !showPosts">Toggle Posts</button>
+      <button @click="posts.pop()">Deleta A Post</button>
+    </div>
+    <div><OtherPostVue /></div>
   </div>
   
 </template>
@@ -81,12 +83,14 @@ export default {
 <script>
 import  getPosts from '../composables/getPosts.js'
 import PostList from '../components/PostList.vue' 
+import OtherPostVue from '../components/OtherPost.vue'
 import {ref} from 'vue';
 
 export default {
   name: 'home',
   components: {
-    PostList
+    PostList,
+    OtherPostVue
   },
   setup() {
 

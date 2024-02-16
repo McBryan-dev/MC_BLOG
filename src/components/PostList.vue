@@ -1,7 +1,7 @@
 <template>
 
   <div class="post_list">
-    <div v-for="post in posts" :key="post.id" class="gap-2 text-lg text-bold">
+    <div v-for="post in posts" :key="post.id" class="gap-4 text-lg text-bold">
         <SinglePost :posts="post" />
     </div>
   </div>

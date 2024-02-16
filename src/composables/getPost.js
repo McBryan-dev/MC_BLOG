@@ -30,4 +30,4 @@ const getPost = (id) => {
 
 };
 
-export default getPost
+export default getPost;
